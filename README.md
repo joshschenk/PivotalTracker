@@ -1,2 +1,0 @@
-# PivotalTracker
-PivotalTracker
