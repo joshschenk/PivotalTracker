@@ -6,25 +6,25 @@ const getStories = (stories) => ({
     stories
 })
 
-const addStory = (project) => ({
+const addStory = (story) => ({
     type: ADD_STORY,
-    project
+    story
 })
 
 
 
-export const addStoryThunk = (projectId, name, description) => async (dispatch) => {
-    const response = await fetch(`/api/stories/${projectId}`, {
+export const addStoryThunk = (story) => async (dispatch) => {
+
+    console.log("GETS to thunk")
+    console.log(story)
+    const response = await fetch("/api/stories/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-            name,
-            description
-        }),
+        body: JSON.stringify(story),
     });
-
+    console.log(response)
     if (response.ok) {
         const data = await response.json();
         dispatch(addStory(data));
@@ -58,11 +58,11 @@ export const getStoriesThunk = (projectId) => async (dispatch) => {
 }
 
 
-export default function reducer(state = { projects: {}, project: {} }, action) {
+export default function reducer(state = { stories: {}, story: {} }, action) {
     let newState = {}
     switch (action.type) {
         case GET_STORIES:
-            return { projects: { ...action.projects }, project: null };
+            return { stories: { ...action.stories }, project: null };
         case ADD_STORY:
             newState = { stories: { ...state.stories }, project: { ...action.story } };
             newState[action.story.id] = action.story

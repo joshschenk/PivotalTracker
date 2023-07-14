@@ -21,6 +21,15 @@ class Story(db.Model):
             'name': self.name,
             'description': self.description,
             'difficulty': self.difficulty,
+            'project_id': self.project_id
+        }
+
+    def to_dict_with_project(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'difficulty': self.difficulty,
             'project_id': self.project_id,
             'project': self.project.to_dict()
         }

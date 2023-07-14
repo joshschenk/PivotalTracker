@@ -1,0 +1,4 @@
+.storyForm {
+    display: flex;
+    flex-direction: column;
+}
