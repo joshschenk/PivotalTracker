@@ -1,0 +1,8 @@
+.projectModalBg {
+    background-color: rgba(0,0,0, 0);
+}
+
+.projectForm {
+    display: flex;
+    flex-direction: column;
+}

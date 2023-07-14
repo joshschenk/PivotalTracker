@@ -1,0 +1,9 @@
+.projectNavContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(70, 64, 64);
+    color: white;
+    gap: 2em;
+    width: 8em;
+    height: 100vh
+}
