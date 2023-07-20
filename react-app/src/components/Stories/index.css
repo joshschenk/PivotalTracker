@@ -1,3 +1,47 @@
 .storiesContainer {
     display: flex;
+    color: white;
+    gap: 5em;
+}
+
+.storyHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.detailsShow {
+
+}
+
+.detailsHidden {
+    display: none;
+}
+
+
+.storyContainer {
+    background-color: white;
+    color:black;
+    border: solid grey
+}
+
+.currentHeader {
+    display: flex;
+    justify-content: space-between;
+
+
+
+}
+.currentStories {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    background-color: grey;
+}
+
+.backlog {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    background-color: grey;
 }

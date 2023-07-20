@@ -1,24 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { addStoryThunk } from "../../store/stories";
+import { addStoryThunk, updateStoryThunk } from "../../store/stories";
 import "./index.css"
 
-export default function NewStory({ projectId }) {
+export default function NewStory({ story, projectId, update }) {
     const dispatch = useDispatch();
+    const storyId = story?.id
 
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [difficulty, setDifficulty] = useState(1)
     const { closeModal } = useModal();
 
+    useEffect(() => {
+        if (update) {
+            setName(story.name)
+            setDescription(story.description)
+            setDifficulty(story.difficulty)
+        }
+    }, [])
+
     const handleNewStory = (e) => {
 
-        console.log("Gets to handle")
         e.preventDefault()
         const project_id = projectId
         const story = {name, description, project_id, difficulty}
-        dispatch(addStoryThunk(story))
+        console.log("IN HANDLE", storyId)
+        if (update)
+            dispatch(updateStoryThunk(story, storyId))
+        else
+            dispatch(addStoryThunk(story))
         closeModal()
     }
 

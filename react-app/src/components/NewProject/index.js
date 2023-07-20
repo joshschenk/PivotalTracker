@@ -1,23 +1,40 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { addProjectThunk } from "../../store/projects.js";
+import { updateProjectThunk } from "../../store/projects.js";
 import "./index.css"
 
 
-export default function NewProject({cmon}) {
+export default function NewProject({update, setProjectId}) {
     const dispatch = useDispatch();
+    const project = useSelector((state) => (state.projects.project ? state.projects.project : []))
+
 
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const { closeModal } = useModal();
 
-    const handleNewProject = (e) => {
+
+    const handleNewProject = async (e) => {
         e.preventDefault()
-        console.log("GETS TO HANDLE??")
-        dispatch(addProjectThunk(name, description))
+        if (update)
+            await dispatch(updateProjectThunk(name, description, project.id))
+        else {
+            const data = await dispatch(addProjectThunk(name, description))
+
+            setProjectId(data.id)
+        }
         closeModal()
     }
+
+    useEffect(() => {
+        if (update)
+        {
+            setName(project.name)
+            setDescription(project.description)
+        }
+    }, [])
 
     return (
         <div className="projectContainer">

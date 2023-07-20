@@ -12,7 +12,7 @@ class Project(db.Model):
     name = db.Column(db.String(50), nullable=False, unique=True)
     description = db.Column(db.String(255), nullable = False)
 
-    stories = db.relationship("Story", back_populates="project")
+    stories = db.relationship("Story", back_populates="project", cascade="all, delete-orphan")
     users = db.relationship("User", secondary=users_projects, back_populates="projects")
 
     def to_dict(self):

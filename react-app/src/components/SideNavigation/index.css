@@ -1,7 +1,7 @@
 .projectNavContainer {
     display: flex;
     flex-direction: column;
-    background-color: rgb(70, 64, 64);
+    background-color: #2F3337;
     color: white;
     gap: 2em;
     width: 8em;

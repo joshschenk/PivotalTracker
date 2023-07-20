@@ -44,7 +44,6 @@ export function Modal() {
   // truthy value, render nothing:
   if (!modalRef || !modalRef.current || !modalContent) return null;
 
-  console.log("Modal CONTEXT", modalContent)
   // Render the following component to the div referenced by the modalRef
   return ReactDOM.createPortal(
     <div id="modal">
