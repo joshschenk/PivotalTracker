@@ -8,6 +8,9 @@ Create Date: 2023-07-13 06:28:04.485337
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
 revision = 'e94ea39c25f7'
@@ -25,6 +28,10 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE projects SET SCHEMA {SCHEMA};")
+    # ### end Alembic commands ###qqqqqqqqq
     op.create_table('stories',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
@@ -35,6 +42,11 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE stories SET SCHEMA {SCHEMA};")
+    # ### end Alembic commands ###qqqqqqqqq
+
     op.create_table('users_projects',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('project_id', sa.Integer(), nullable=False),
@@ -42,7 +54,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('user_id', 'project_id')
     )
-    # ### end Alembic commands ###
+    if environment == "production":
+        op.execute(f"ALTER TABLE users_projects SET SCHEMA {SCHEMA};")
+    # ### end Alembic commands ###qqqqqqqqq
 
 
 def downgrade():
