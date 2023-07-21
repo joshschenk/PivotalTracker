@@ -11,9 +11,9 @@ project_routes = Blueprint('projects', __name__)
 @project_routes.route('/')
 @login_required
 def get_projects():
+    current_user_id = current_user.to_dict()["id"]
+    projects = Project.query.filter_by(user_id = current_user_id).all()
 
-
-    projects = Project.query.all()
     projects_to_dict = [p.to_dict() for p in projects]
     return {p["id"]:p for p in projects_to_dict}
 
@@ -28,18 +28,19 @@ def get_project(id):
 @project_routes.route('/', methods=['POST'])
 def new_project():
 
-
-
     form = ProjectForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         project = Project(
             name=form.data['name'],
             description=form.data['description'],
+            user_id = current_user.to_dict()["id"]
         )
         db.session.add(project)
         db.session.commit()
         return project.to_dict()
+    print(form.errors)
+    return {"errors":form.errors}, 401
 
 @project_routes.route('/delete/<int:id>', methods=['DELETE'])
 def delete_project(id):
@@ -65,3 +66,5 @@ def update_project(id):
         project_to_update.description = form.data["description"]
         db.session.commit()
         return project_to_update.to_dict()
+    print(form.errors)
+    return {"errors":form.errors}, 401

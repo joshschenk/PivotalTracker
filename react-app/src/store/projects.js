@@ -42,7 +42,17 @@ export const updateProjectThunk = (name, description, projectId) => async dispat
     if (response.ok) {
         const res = await response.json();
         dispatch(updateProject(res))
-    };
+    }
+    else if (response.status < 500) {
+        const data = await response.json();
+        console.log("JEKJREKR", data)
+        if (data.errors) {
+            return data.errors;
+        }
+    }
+    else {
+        return ["An error occurred. Please try again."];
+    }
 };
 
 export const deleteProjectThunk = (projectId) => async (dispatch) => {
@@ -57,9 +67,10 @@ export const deleteProjectThunk = (projectId) => async (dispatch) => {
 
         dispatch(deleteProject(projectId))
     }
+
+
+
 }
-
-
 export const addProjectThunk = (name, description) => async (dispatch) => {
     const response = await fetch("/api/projects/", {
         method: "POST",
@@ -78,6 +89,7 @@ export const addProjectThunk = (name, description) => async (dispatch) => {
         return data;
     } else if (response.status < 500) {
         const data = await response.json();
+
         if (data.errors) {
             return data.errors;
         }

@@ -6,6 +6,8 @@ import LoginFormPage from "./components/LoginFormPage";
 import Stories from "./components/Stories";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import LoginPage from "./components/LoginPage";
+import SignUpPage from "./components/SignUpPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,16 +18,23 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      <Route exact path="/">
+        <LoginPage />
+      </Route>
+
       {isLoaded && (
         <Switch>
-          <Route path="/login" >
+          <Route exact path="/login" >
             <LoginFormPage />
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup" >
+            <SignUpPage />
+          </Route>
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/projects">
+          <Route exact path="/projects">
+            <Navigation isLoaded={isLoaded} />
             <Stories/>
           </Route>
         </Switch>

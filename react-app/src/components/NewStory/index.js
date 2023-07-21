@@ -11,6 +11,7 @@ export default function NewStory({ story, projectId, update }) {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [difficulty, setDifficulty] = useState(1)
+    const [errors, setErrors] = useState([])
     const { closeModal } = useModal();
 
     useEffect(() => {
@@ -21,17 +22,33 @@ export default function NewStory({ story, projectId, update }) {
         }
     }, [])
 
-    const handleNewStory = (e) => {
+    const handleNewStory = async (e) => {
 
         e.preventDefault()
         const project_id = projectId
         const story = {name, description, project_id, difficulty}
-        console.log("IN HANDLE", storyId)
-        if (update)
-            dispatch(updateStoryThunk(story, storyId))
-        else
-            dispatch(addStoryThunk(story))
-        closeModal()
+
+        if (update) {
+            const data = await dispatch(updateStoryThunk(story, storyId))
+
+            if (data) {
+                setErrors(data);
+            }
+            else
+                closeModal()
+        }
+        else {
+            const data = await dispatch(addStoryThunk(story))
+            if (data) {
+                console.log(data)
+
+                setErrors(data);
+            }
+
+            else {
+                closeModal()
+            }
+        }
     }
 
     return (
@@ -45,11 +62,17 @@ export default function NewStory({ story, projectId, update }) {
                         setName(e.target.value)
                     }}
                 />
+                {errors.name && (
+                    <div className="emailError">{errors.name}</div>
+                )}
                 <textarea
                     placeholder="Please write at least 30 characters"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
+                {errors.description && (
+                    <div className="emailError">{errors.description}</div>
+                )}
                 <label>
                     Difficulty
                 </label>
@@ -62,7 +85,7 @@ export default function NewStory({ story, projectId, update }) {
                     }}
                 />
 
-                <button className="projectSubmit" type="submit">Add Project</button>
+                <button className="projectSubmit" type="submit">{update ? "Update Story" : "Add Story"}</button>
             </form>
         </div>
     )

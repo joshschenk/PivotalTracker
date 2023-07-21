@@ -14,18 +14,33 @@ export default function NewProject({update, setProjectId}) {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const { closeModal } = useModal();
+    const [errors, setErrors] = useState([])
 
 
     const handleNewProject = async (e) => {
         e.preventDefault()
-        if (update)
-            await dispatch(updateProjectThunk(name, description, project.id))
+        if (update) {
+            const data = await dispatch(updateProjectThunk(name, description, project.id))
+
+            if (data) {
+                setErrors(data);
+            }
+            else
+                closeModal()
+        }
         else {
             const data = await dispatch(addProjectThunk(name, description))
+            console.log(data)
+            if (!data.id) {
+                setErrors(data);
+            }
 
-            setProjectId(data.id)
+            else {
+                setProjectId(data.id)
+                closeModal()
+            }
         }
-        closeModal()
+
     }
 
     useEffect(() => {
@@ -47,13 +62,19 @@ export default function NewProject({update, setProjectId}) {
                         setName(e.target.value)
                     }}
                 />
+                {errors.name && (
+                    <div className="emailError">{errors.name}</div>
+                )}
                 <textarea
                     placeholder="Please write at least 30 characters"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
+                {errors.description && (
+                    <div className="emailError">{errors.description}</div>
+                )}
 
-                <button className="projectSubmit" type="submit">Add Project</button>
+                <button className="projectSubmit" type="submit">{update ? "Update Project" : "Add Project"}</button>
             </form>
         </div>
     )

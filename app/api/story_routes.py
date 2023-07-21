@@ -35,6 +35,7 @@ def new_story():
         db.session.add(story)
         db.session.commit()
         return story.to_dict()
+    return {"errors":form.errors}, 401
 
 @story_routes.route('/<int:id>', methods=['DELETE'])
 def delete_story(id):
@@ -62,3 +63,4 @@ def update_story(id):
 
         db.session.commit()
         return story_to_update.to_dict()
+    return {"errors":form.errors}, 401

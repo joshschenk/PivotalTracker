@@ -13,7 +13,6 @@ import NewProject from "../NewProject";
 function Stories() {
 
     const dispatch = useDispatch();
-    const {closeModal} = useModal();
     const [showDetails, setShowDetails] = useState(false)
 
     const project = useSelector((state) => (state.projects.project ? state.projects.project : {}))
@@ -29,19 +28,20 @@ function Stories() {
             dispatch(getStoriesThunk(project.id))
 
 
+
     }, [project]);
 
 
     const handleDetails = (e) => {
         e.preventDefault()
 
-        setShowDetails(!showDetails)
+        setShowDetails(() => !showDetails)
 
-
+        console.log(showDetails)
         let details = document.getElementById(e.currentTarget.dataset.id);
 
-        if (showDetails) {
-            details.className = ".detailsShow"
+        if (details.className === "detailsHidden") {
+            details.className = "detailsShow"
         }
         else {
             details.className = "detailsHidden"

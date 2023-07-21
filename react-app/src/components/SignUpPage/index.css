@@ -1,0 +1,42 @@
+.signUpContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signupheader {
+    justify-content: center;
+
+}
+
+.started {
+    margin-top: 2em;
+    font-size: 2em;
+}
+
+.signupForm {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.formContainer {
+    box-shadow: 0 0 4px 2px rgba(59, 59, 59, 0.15);
+    width: 30em;
+    padding: 4em;
+}
+
+.emailSignup {
+    display: flex;
+    flex-direction: column;
+}
+
+.passwordSignup {
+    display: flex;
+    flex-direction: column;
+}
+
+.passwordConfirmSignup {
+    display: flex;
+    flex-direction: column;
+}

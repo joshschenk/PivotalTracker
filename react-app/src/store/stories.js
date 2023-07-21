@@ -41,7 +41,16 @@ export const updateStoryThunk = (story, storyId) => async dispatch => {
     if (response.ok) {
         const res = await response.json();
         dispatch(updateStory(res))
-    };
+    }
+    else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+        return data.errors;
+    }
+} else {
+    return ["An error occurred. Please try again."];
+}
+
 };
 
 export const deleteStoryThunk = (storyId) => async (dispatch) => {
@@ -70,9 +79,9 @@ export const addStoryThunk = (story) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(addStory(data));
-        return null;
     } else if (response.status < 500) {
         const data = await response.json();
+
         if (data.errors) {
             return data.errors;
         }

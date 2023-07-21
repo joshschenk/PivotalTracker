@@ -1,0 +1,122 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    padding-right: 10em;
+    padding-left: 10em;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid #5282b0;
+}
+
+.formAndText {
+    display: flex;
+    background-image: url("../../assets/background.png");
+    backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
+    justify-content: center;
+    gap: 2em;
+    height: 25em;
+    padding-bottom: 2em;
+    width: 100%;
+}
+
+.formText {
+    margin-top: 10em;
+    width: 30em;
+
+    /* background-color: white; */
+
+}
+
+.main {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+
+}
+.form {
+
+    margin-top: 10em;
+    display: flex;
+    flex-direction: column;
+    width: 30em;
+    align-items: center;
+    background-color: white;
+    padding-bottom: 20em;
+    /* border: solid #ed7d1a; */
+    box-shadow: 0 0 4px 2px rgba(59, 59, 59, 0.15);
+
+}
+
+.loginContainer {
+    font-family: ars-maquette-web, Arial;
+    display: flex;
+    flex-direction: column;
+}
+
+.text {
+    font-weight: 900;
+}
+
+.text2 {
+    margin-top: 5em;
+    text-align: center;
+}
+
+.logo {
+    width: 15em;
+    height: 4em;
+}
+
+.sign {
+    font-weight: 800;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.email {
+    margin-top: 1.5em;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+
+.email > input {
+    width: 100%;
+    border: 1px solid #5F5F5F;
+    height: 2em;
+}
+
+.password {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.password > input {
+    width: 100%;
+    border: 1px solid #5F5F5F;
+    height: 2em;
+}
+
+.subbut {
+    margin-top: 1em;
+    width: 93%;
+}
+
+.subbut > button {
+    width: 101.259%;
+    height: 2.27em;
+    margin-bottom: 1em;
+}
+
+.emailError {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: red;
+}
+
+.demo {
+    width: 93%
+}
