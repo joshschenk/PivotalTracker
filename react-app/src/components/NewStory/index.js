@@ -26,6 +26,7 @@ export default function NewStory({ story, projectId, update }) {
 
         e.preventDefault()
         const project_id = projectId
+
         const story = {name, description, project_id, difficulty}
 
         if (update) {
@@ -80,6 +81,7 @@ export default function NewStory({ story, projectId, update }) {
                     type="number"
                     placeholder=""
                     value={difficulty}
+                    max="10"
                     onChange={(e) => {
                         setDifficulty(e.target.value)
                     }}

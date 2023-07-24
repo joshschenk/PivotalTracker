@@ -9,6 +9,7 @@ import { useModal } from "../../context/Modal";
 import DeleteStory from "../DeleteStory";
 import OpenModalButton from "../OpenModalButton";
 import NewProject from "../NewProject";
+import Navigation from "../Navigation";
 
 function Stories() {
 
@@ -62,9 +63,9 @@ function Stories() {
                 <div className="currentHeader">
                     <h2>Current</h2>
                     <div>
-                        <OpenModalButton buttonText="Edit Project" modalComponent={<NewProject update={true} ></NewProject>}></OpenModalButton>
+                        {project.id && <OpenModalButton buttonText="Edit Project" modalComponent={<NewProject update={true} ></NewProject>}></OpenModalButton>}
 
-                        <OpenModalButton buttonText="Add Story" modalComponent={<NewStory update={false} projectId={project.id}></NewStory>}></OpenModalButton>
+                        {project.id && <OpenModalButton buttonText="Add Story" modalComponent={<NewStory update={false} projectId={project.id}></NewStory>}></OpenModalButton>}
                     </div>
                 </div>
                 {stories?.map((story) => (
@@ -78,7 +79,7 @@ function Stories() {
                         </div>
                         <div className="detailsHidden" id={story.id}>
                             <div>{story.description}</div>
-                            <div>{story.difficulty}</div>
+                            <div>{story.difficulty} points</div>
                         </div>
                     </div>
 

@@ -6,7 +6,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 
-function ProfileButton({ user }) {
+function ProfileButton({ user, className }) {
   const history = useHistory()
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -42,18 +42,18 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button className={className} onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
-          <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
-          </>
+          <div>
+            <div>{user.username}</div>
+            <div>{user.email}</div>
+
+            <button onClick={handleLogout}>Log Out</button>
+
+          </div>
         ) : (
           <>
             <OpenModalButton

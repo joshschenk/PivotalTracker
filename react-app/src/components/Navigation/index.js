@@ -1,26 +1,31 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import OpenModalButton from "../OpenModalButton";
 import NewProject from '../NewProject';
 import './Navigation.css';
+import tracker from "../../assets/tracker.png"
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
+	const project = useSelector(state => state.projects.project)
 
 	return (
-		<ul>
-			<li>
-				<NavLink exact to="/">Home</NavLink>
-			</li>
+		<div className="navContainer">
+
+			<Link to="/">
+
+				<img className="tracker" src={tracker} alt="tracker" />
+			</Link>
+
 			{isLoaded && (
-				<li>
-					<ProfileButton user={sessionUser} />
-				</li>
+
+					<ProfileButton className="profileButton" user={sessionUser} />
+
 			)}
-		</ul>
-	);
+		</div>
+	)
 }
 
 export default Navigation;

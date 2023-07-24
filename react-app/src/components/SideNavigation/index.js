@@ -54,9 +54,9 @@ function SideNavigation() {
                 }
 
             </select>
-            <OpenModalButton modalComponent={<DeleteProject setProjectId={setProjectId} projectId={projectId} className="DeleteModal" />} buttonText="Delete Project" />
+            {projectId &&<OpenModalButton modalComponent={<DeleteProject setProjectId={setProjectId} projectId={projectId} className="DeleteModal" />} buttonText="Delete Project" />}
             <OpenModalButton update={false} isDiv={false} modalComponent={<NewProject setProjectId={setProjectId} className="projectModal"/>} buttonText="New Project"/>
-            <div className='myWork'>
+            {/* <div className='myWork'>
                 My Work
             </div>
             <div className='backlog'>
@@ -67,7 +67,7 @@ function SideNavigation() {
             </div>
             <div className="done">
                 Done
-            </div>
+            </div> */}
         </div>
     )
 }
