@@ -6,6 +6,7 @@ import { login } from "../../store/session";
 import logo from "../../assets/logo.png"
 // import background from "../..assets/background.png"
 import "./index.css"
+import Footer from "../Footer";
 
 const LoginPage = () => {
 
@@ -101,7 +102,7 @@ const LoginPage = () => {
                     </p>
                 </div>
             </div>
-
+            <Footer></Footer>
         </div>
     )
 }
