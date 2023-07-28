@@ -3,6 +3,44 @@ const ADD_STORY = "stories/ADD_STORY"
 const DELETE_STORY = "stories/DELETE_STORY"
 const UPDATE_STORY = "stories/UPDATE_STORY"
 const CLEAR_STORIES = "stories/CLEAR_STORIES"
+const ADD_STORY_COMMENT = "comments/ADD_STORY_COMMENT"
+
+
+
+const addStoryComment = (comment) => ({
+    type: ADD_STORY_COMMENT,
+    comment
+})
+
+
+export const addStoryCommentThunk = (comment) => async (dispatch) => {
+    console.log("GETS TO COMMENT THUNK")
+    console.log(comment)
+
+    const response = await fetch("/api/comments/story", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(comment),
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(addStoryComment(data));
+    } else if (response.status < 500) {
+        const data = await response.json();
+
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
+    }
+};
+
+
+
+
 
 export const clearStories = () => ({
     type: CLEAR_STORIES,
@@ -128,6 +166,15 @@ export default function reducer(state = { stories: {}, story: {} }, action) {
             return { stories: { ...newState }, story: {...action.story} }
         case CLEAR_STORIES:
             return {}
+
+
+        case ADD_STORY_COMMENT:
+            newState = {...state.stories}
+            // console.log(newState[action.comment.story_id].comments)
+            newState[action.comment.story_id].comments.push(action.comment)
+            // console.log({...newState[action.comment.story_id]})
+            return {stories: {...newState}, story: {...newState[action.comment.story_id]}}
+
         default:
             return state;
     }

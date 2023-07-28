@@ -12,19 +12,27 @@ class Project(db.Model):
     name = db.Column(db.String(50), nullable=False, unique=True)
     description = db.Column(db.String(255), nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
-
-    user = db.relationship("User",  back_populates="projects")
-
     stories = db.relationship("Story", back_populates="project", cascade="all, delete-orphan")
-    # users = db.relationship("User", secondary=users_projects, back_populates="projects")
+    users = db.relationship("User", secondary=users_projects, back_populates="projects")
+    comments = db.relationship("Comment", back_populates="project", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
             'id': self.id,
             'name': self.name,
             'description': self.description,
-            'stories': [story.to_dict() for story in self.stories],
             'user_id': self.user_id,
-            'user': self.user.to_dict()
-            # 'users': [user.to_dict() for user in self.users]
+            'stories': [story.to_dict() for story in self.stories],
+            'comments': [comment.to_dict() for comment in self.comments]
+
+        }
+
+    def to_dict_with_users(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'user_id': self.user_id,
+            'stories': [story.to_dict() for story in self.stories],
+            'users': [user.to_dict() for user in self.users]
         }

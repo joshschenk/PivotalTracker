@@ -6,15 +6,13 @@ from app.forms import ProjectForm
 project_routes = Blueprint('projects', __name__)
 
 
-
-
 @project_routes.route('/')
 @login_required
 def get_projects():
     current_user_id = current_user.to_dict()["id"]
     projects = Project.query.filter_by(user_id = current_user_id).all()
 
-    projects_to_dict = [p.to_dict() for p in projects]
+    projects_to_dict = [p.to_dict_with_users() for p in projects]
     return {p["id"]:p for p in projects_to_dict}
 
 @project_routes.route('/<int:id>')
@@ -22,7 +20,7 @@ def get_projects():
 def get_project(id):
 
     project = Project.query.get(id)
-    return project.to_dict()
+    return project.to_dict_with_users()
 
 
 @project_routes.route('/', methods=['POST'])

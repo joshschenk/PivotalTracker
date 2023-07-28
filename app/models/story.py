@@ -12,6 +12,7 @@ class Story(db.Model):
     description = db.Column(db.String(255), nullable = False)
     difficulty = db.Column(db.Integer, nullable = False)
     project_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("projects.id")))
+    comments = db.relationship("Comment", back_populates="story", cascade="all, delete-orphan")
 
     project = db.relationship("Project",  back_populates="stories")
 
@@ -21,7 +22,8 @@ class Story(db.Model):
             'name': self.name,
             'description': self.description,
             'difficulty': self.difficulty,
-            'project_id': self.project_id
+            'project_id': self.project_id,
+            'comments': [comment.to_dict() for comment in self.comments]
         }
 
     def to_dict_with_project(self):

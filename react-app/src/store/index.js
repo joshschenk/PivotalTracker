@@ -3,9 +3,10 @@ import thunk from 'redux-thunk';
 import stories from "./stories"
 import projects from './projects'
 import session from './session'
+import comments from './comments'
 
 const rootReducer = combineReducers({
-  projects, stories, session,
+  projects, stories, session, comments
 });
 
 

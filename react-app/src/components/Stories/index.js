@@ -10,6 +10,7 @@ import DeleteStory from "../DeleteStory";
 import OpenModalButton from "../OpenModalButton";
 import NewProject from "../NewProject";
 import Navigation from "../Navigation";
+import NewComment from "../NewComment";
 
 function Stories() {
 
@@ -25,10 +26,10 @@ function Stories() {
 
 
     useEffect(() => {
-        if (project.id)
+        if (project.id) {
             dispatch(getStoriesThunk(project.id))
 
-
+        }
 
     }, [project]);
 
@@ -80,6 +81,16 @@ function Stories() {
                         <div className="detailsHidden" id={story.id}>
                             <div>{story.description}</div>
                             <div>{story.difficulty} points</div>
+                            <div>
+                                <div>Comments</div>
+                                <OpenModalButton buttonText="Add Comment" modalComponent={<NewComment  isStory={true} story={story}></NewComment>}></OpenModalButton>
+
+                            </div>
+                            <div>
+                                {story.comments?.map((comment) => (
+                                    <div>{comment.message}</div>
+                                ))}
+                            </div>
                         </div>
                     </div>
 

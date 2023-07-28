@@ -5,10 +5,10 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_projects(users):
     capstone = Project(
-        name ='Capstone', description='Final Project', user_id=1)
+        name ='Capstone', description='Final Project', user_id = 1, users= [users[0], users[1]])
 
     group = Project(
-        name ='Group', description='Group Project', user_id=2)
+        name ='Group', description='Group Project', user_id = 3, users= [users[0], users[2]])
 
 
     db.session.add(capstone)

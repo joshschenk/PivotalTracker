@@ -29,6 +29,8 @@ function SideNavigation() {
             dispatch(getProjectThunk(projectId))
         }
 
+        console.log(project)
+
     }, [dispatch, projectId])
 
 

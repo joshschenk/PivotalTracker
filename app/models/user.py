@@ -15,7 +15,9 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    projects = db.relationship("Project", secondary=users_projects, back_populates="user")
+
+    comments = db.relationship("Comment", back_populates="user", cascade="all, delete-orphan")
+    projects = db.relationship("Project", secondary=users_projects, back_populates="users")
 
     @property
     def password(self):
@@ -33,4 +35,12 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email
+        }
+
+    def to_dict_with_projects(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'projects': [project.to_dict() for project in self.projects]
         }

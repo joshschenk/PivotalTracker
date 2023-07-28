@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Story, db, Project
+from app.models import Story, db, Project, Comment
 from app.forms import StoryForm
 
 story_routes = Blueprint('stories', __name__)
