@@ -29,7 +29,8 @@ def new_story():
             name=form.data['name'],
             description=form.data['description'],
             difficulty=form.data['difficulty'],
-            project_id=form.data['project_id']
+            project_id=form.data['project_id'],
+            status= 'BACKLOG'
 
         )
         db.session.add(story)

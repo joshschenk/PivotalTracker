@@ -49,6 +49,7 @@ def upgrade():
     sa.Column('description', sa.String(length=255), nullable=False),
     sa.Column('difficulty', sa.Integer(), nullable=False),
     sa.Column('project_id', sa.Integer(), nullable=True),
+    sa.Column('status', sa.String(length=50), nullable=False),
     sa.ForeignKeyConstraint(['project_id'], ['projects.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')

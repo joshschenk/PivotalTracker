@@ -8,6 +8,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import LoginPage from "./components/LoginPage";
 import SignUpPage from "./components/SignUpPage";
+import StoriesDnD from "./components/StoriesDnD";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function App() {
           <Route exact path="/projects">
             <Navigation isLoaded={isLoaded} />
             <Stories/>
+          </Route>
+          <Route exact path="/stories">
+            <StoriesDnD/>
           </Route>
         </Switch>
       )}

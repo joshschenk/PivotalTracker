@@ -5,18 +5,27 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_stories():
 
-    createProject = Story(
-        name ='Create Projects', description='The user should be able to create projects', difficulty= 5, project_id=1)
+    projects = Story(
+        name ='Implement Projects', description='The user should be able to create projects', difficulty= 1, project_id=1,status='CURRENT')
 
-    createStory = Story(
-        name ='Create Story', description='The user should be able to create stories', difficulty= 4, project_id=1)
+    stories = Story(
+        name ='Implement Stories', description='The user should be able to create stories', difficulty= 1, project_id=1,status='CURRENT')
+    dnd = Story(
+        name ='Implement DnD', description='The user should be able to move story between statuses', difficulty= 5, project_id=1,status='CURRENT')
+    comments = Story(
+        name ='Implement Comments', description='The user should be able to create comments', difficulty= 1, project_id=1,status='BACKLOG')
+    chat = Story(
+        name ='Implement Chat', description='The user should be able to chat in real time', difficulty= 1, project_id=1,status='BACKLOG')
 
     createSpot = Story(
-        name ='Create Spots', description='The user should be able to create spots', difficulty= 3, project_id=2)
+        name ='Create Spots', description='The user should be able to create spots', difficulty= 3, project_id=2,status='BACKLOG')
 
 
-    db.session.add(createProject)
-    db.session.add(createStory)
+    db.session.add(projects)
+    db.session.add(stories)
+    db.session.add(dnd)
+    db.session.add(chat)
+    db.session.add(comments)
     db.session.add(createSpot)
 
     db.session.commit()
