@@ -57,7 +57,7 @@ export default function NewStory({ story, projectId, update }) {
             <form className="storyForm" onSubmit={handleNewStory}>
                 <input
                     type="text"
-                    placeholder="Input Project Name"
+                    placeholder="Input Story Name"
                     value={name}
                     onChange={(e) => {
                         setName(e.target.value)
@@ -66,7 +66,7 @@ export default function NewStory({ story, projectId, update }) {
                 {errors.name && (
                     <div className="emailError">{errors.name}</div>
                 )}
-                <textarea
+                <textarea className="tastorydescription"
                     placeholder="Please write at least 30 characters"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}

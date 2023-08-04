@@ -103,12 +103,14 @@
 .subbut {
     margin-top: 1em;
     width: 93%;
+    background-color: #ed7d1a;
 }
 
 .subbut > button {
     width: 101.259%;
     height: 2.27em;
     margin-bottom: 1em;
+
 }
 
 .emailError {
@@ -118,5 +120,6 @@
 }
 
 .demo {
-    width: 93%
+    width: 93%;
+    background-color: #ed7d1a;
 }

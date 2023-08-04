@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { addStoryCommentThunk } from "../../store/stories";
 // import { addStoryCommentThunk } from "../../store/comments";
+import "./index.css"
 
 export default function NewComment({ comment, story, isStory, update }) {
     const dispatch = useDispatch();

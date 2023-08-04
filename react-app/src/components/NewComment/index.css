@@ -1,0 +1,9 @@
+.commentForm {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.commentForm > textarea {
+    height: 6em
+}

@@ -65,7 +65,7 @@ export default function NewProject({update, setProjectId}) {
                 {errors.name && (
                     <div className="emailError">{errors.name}</div>
                 )}
-                <textarea
+                <textarea className="tadescription"
                     placeholder="Please write at least 30 characters"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}

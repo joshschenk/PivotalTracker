@@ -79,17 +79,23 @@ function Stories() {
                             </div>
                         </div>
                         <div className="detailsHidden" id={story.id}>
-                            <div>{story.description}</div>
-                            <div>{story.difficulty} points</div>
-                            <div>
-                                <div>Comments</div>
-                                <OpenModalButton buttonText="Add Comment" modalComponent={<NewComment  isStory={true} story={story}></NewComment>}></OpenModalButton>
+                            <div className="descrip">{story.description}</div>
+                            <div classname="diff">{story.difficulty} points</div>
 
-                            </div>
-                            <div>
-                                {story.comments?.map((comment) => (
-                                    <div>{comment.message}</div>
-                                ))}
+                            <div className="commentbox">
+                                <div className="com">
+                                    <div className="commenttext">Comments</div>
+                                    <OpenModalButton buttonText="Add Comment" modalComponent={<NewComment  isStory={true} story={story}></NewComment>}></OpenModalButton>
+
+                                </div>
+
+                                    {story.comments?.map((comment) => (
+                                        <div className="message">
+                                            <div>{comment.message}</div>
+                                            <div>-{comment.user.username}</div>
+                                        </div>
+                                    ))}
+
                             </div>
                         </div>
                     </div>
@@ -98,7 +104,14 @@ function Stories() {
 
             </div>
             <div className="backlog">
-                <h2>Backlog</h2>
+                <div className="currentHeader">
+                    <h2>Backlog</h2>
+                    <div>
+                        {/* {project.id && <OpenModalButton buttonText="Edit Project" modalComponent={<NewProject update={true} ></NewProject>}></OpenModalButton>} */}
+
+                        {project.id && <OpenModalButton buttonText="Add Story" modalComponent={<NewStory update={false} projectId={project.id}></NewStory>}></OpenModalButton>}
+                    </div>
+                </div>
             </div>
         </div>
 
