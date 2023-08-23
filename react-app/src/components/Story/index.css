@@ -1,0 +1,298 @@
+/* .storiesContainer {
+    display: flex;
+    color: white;
+    gap: 5em;
+}
+
+.story {
+    cursor: pointer;
+    font-weight: 1000;
+}
+
+.storyHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.commenttext {
+    font-weight: 1000;
+}
+
+.message {
+    margin-top: .5em;
+}
+
+.commentbox {
+    background-color: rgb(219, 218, 215);
+    margin: .5em
+}
+
+.com {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.detailsShow {
+
+}
+
+.detailsHidden {
+    display: none;
+}
+
+
+.storyContainer {
+    background-color: white;
+    color:black;
+    border: solid grey
+}
+
+.currentHeader {
+    display: flex;
+    justify-content: space-between;
+    background-color: #ed7d1a
+
+
+
+}
+
+.descrip {
+    margin-top: .5em;
+}
+
+button {
+     background-color: #ed7d1a;
+}
+.currentStories {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    background-color: grey;
+    border-radius: .5em
+}
+
+.backlog {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    background-color: grey;
+     border-radius: .5em
+} */
+
+.storyContainer {
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.storyContainer:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.storyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.story {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.story:hover {
+  color: #5282b0;
+}
+
+.editDelete {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.detailsHidden {
+  display: none;
+  margin-top: 15px;
+}
+
+.commentbox {
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+
+.com {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.commenttext {
+  font-weight: bold;
+  color: #007bff;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.message {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.message div:first-child {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.message div:last-child {
+  color: #666;
+}
+
+/* .addCommentModal,
+.updateStoryModal,
+.deleteStoryModal {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+} */
+
+.storyContainer {
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.storyContainer:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.storyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.story {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.story:hover {
+  color: #5282b0;
+}
+
+.editDelete {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.detailsHidden {
+  display: none;
+  margin-top: 15px;
+}
+
+.commentbox {
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+
+.com {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.commenttext {
+  font-weight: bold;
+  color: #5282b0;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.message {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.message div:first-child {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.message div:last-child {
+  color: #666;
+}
+
+.editDelete button {
+  background-color: #5282b0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.com button {
+   background-color: #5282b0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.addCommentModal:hover,
+.updateStoryModal:hover,
+.deleteStoryModal:hover {
+  background-color: #0056b3;
+}
+
+.addCommentModal:hover,
+.updateStoryModal:hover,
+.deleteStoryModal:hover {
+  background-color: #0056b3;
+}

@@ -5,6 +5,10 @@ from app.forms import StoryForm
 
 story_routes = Blueprint('stories', __name__)
 
+@story_routes.route('/story/<int:id>')
+def get_story(id):
+    story = Story.query.filter_by(story_id = id)
+    return story.to_dict()
 
 @story_routes.route('/<int:id>')
 @login_required
@@ -16,6 +20,7 @@ def get_stories(id):
     stories = Story.query.filter_by(project_id = id).all()
     stories_to_dict = [s.to_dict() for s in stories]
     return {s["id"]:s for s in stories_to_dict}
+
 
 
 @story_routes.route('/', methods=["POST"])

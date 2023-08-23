@@ -4,7 +4,7 @@ import { clearStories } from "../../store/stories";
 import { useModal } from "../../context/Modal";
 import { deleteProjectThunk } from "../../store/projects";
 
-// import "./index.css"
+import "./index.css"
 
 export default function DeleteProject({setProjectId, projectId }) {
 

@@ -1,8 +1,49 @@
-.storyForm {
+/* .storyForm {
     display: flex;
     flex-direction: column;
 }
 
 .tastorydescription {
     height: 6em;
+} */
+
+.projectContainer {
+  margin: 20px;
+}
+
+.storyForm {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.storyForm input,
+.storyForm textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.storyForm label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.emailError {
+  color: red;
+  font-size: 14px;
+}
+
+.projectSubmit {
+  padding: 10px 15px;
+  background-color: #5282b0;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
 }

@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import LoginPage from "./components/LoginPage";
 import SignUpPage from "./components/SignUpPage";
 import StoriesDnD from "./components/StoriesDnD";
+import StoriesTest from "./components/StoriesTest"
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,9 @@ function App() {
           </Route>
           <Route exact path="/stories">
             <StoriesDnD/>
+          </Route>
+          <Route exact path="/StoriesTest">
+            <StoriesTest />
           </Route>
         </Switch>
       )}

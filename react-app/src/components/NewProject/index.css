@@ -2,12 +2,47 @@
     background-color: rgba(0,0,0, 0);
 }
 
-.projectForm {
+/* .projectForm {
     display: flex;
     flex-direction: column;
+    padding: 4em;
 }
 
 
 .tadescription {
     height: 6em;
+} */
+
+.projectContainer {
+  margin: 20px;
+}
+
+.projectForm {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.projectForm input,
+.projectForm textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.emailError {
+  color: red;
+  font-size: 14px;
+}
+
+.projectSubmit {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
 }

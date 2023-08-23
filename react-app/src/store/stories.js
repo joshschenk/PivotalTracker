@@ -4,14 +4,35 @@ const DELETE_STORY = "stories/DELETE_STORY"
 const UPDATE_STORY = "stories/UPDATE_STORY"
 const CLEAR_STORIES = "stories/CLEAR_STORIES"
 const ADD_STORY_COMMENT = "comments/ADD_STORY_COMMENT"
+const GET_STORY = "stories/GET_STORY"
 
 
+
+const getStory = (story) => ({
+    type: GET_STORY,
+    story
+})
 
 const addStoryComment = (comment) => ({
     type: ADD_STORY_COMMENT,
     comment
 })
 
+
+export const getStoryThunk = (storyId) => async (dispatch) => {
+
+    const response = await fetch(`/api/stories/story/${storyId}`, {
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    if (response.ok) {
+        const story = await response.json()
+
+        dispatch(getStory(story))
+    }
+}
 
 export const addStoryCommentThunk = (comment) => async (dispatch) => {
     console.log("GETS TO COMMENT THUNK")
@@ -166,6 +187,9 @@ export default function reducer(state = { stories: {}, story: {} }, action) {
             return { stories: { ...newState }, story: {...action.story} }
         case CLEAR_STORIES:
             return {}
+
+        case GET_STORY:
+            return {stories: {}, story: {...action.story}}
 
 
         case ADD_STORY_COMMENT:

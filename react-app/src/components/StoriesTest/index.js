@@ -1,14 +1,39 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from 'uuid';
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getStoriesThunk } from "../../store/stories";
-import SideNavigation from "../SideNavigation";
-import Story from "../Story"
 
 
+const itemsFromBackend = [
+    { id: '1232', content: "First task" },
+    { id: uuidv4(), content: "Second task" },
+    { id: uuidv4(), content: "Third task" },
+    { id: uuidv4(), content: "Fourth task" },
+    { id: uuidv4(), content: "Fifth task" }
+];
 
+const columnsFromBackend = {
+    [uuidv4()]: {
+        name: "Requested",
+        items: itemsFromBackend
+    },
+    [uuidv4()]: {
+        name: "To do",
+        items: []
+    },
+    [uuidv4()]: {
+        name: "In Progress",
+        items: []
+    },
+    [uuidv4()]: {
+        name: "Done",
+        items: []
+    }
+};
+console.log("items", itemsFromBackend)
+console.log("columns", columnsFromBackend)
 const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
     const { source, destination } = result;
@@ -48,75 +73,26 @@ const onDragEnd = (result, columns, setColumns) => {
 
 
 
+function StoriesTest() {
+    const [columns, setColumns] = useState(columnsFromBackend);
+    // Object.entries(columns).map(([columnId, column], index) => {
+    //     console.log(columnId)
+    //     console.log(column)
 
-function StoriesDnD() {
+    // })
+    console.log([uuidv4()])
+    console.log(uuidv4())
+    console.log(columns)
 
-    const dispatch = useDispatch()
-
-    const project = useSelector((state) => (state.projects.project ? state.projects.project : {}))
-
-    const [columns, setColumns] = useState({});
-    const stories = Object.values(
-        useSelector((state) => (state.stories.stories ? state.stories.stories : []))
-    );
-
-    // useEffect(() => {
-    //     if (project.id) {
-    //         dispatch(getStoriesThunk(project.id))
-
-
-    //     }
-
-    // }, [project]);
-
-
-    let columnsFromBackend = {}
-
-
-
-
-    useEffect(() => {
-        if (project.id) {
-
-            dispatch(getStoriesThunk(project.id))
-            let namesList = []
-
-            namesList = stories.map(s => ({ id: `${s.id}`, content: s.name }))
-            console.log(namesList)
-            columnsFromBackend = {
-                [uuidv4()]: {
-                    name: "Current",
-                    items: namesList
-                },
-                [uuidv4()]: {
-                    name: "Backlog",
-                    items: []
-                },
-                [uuidv4()]: {
-                    name: "Done",
-                    items: []
-                },
-                [uuidv4()]: {
-                    name: "Blocked",
-                    items: []
-                }
-            };
-            setColumns({...columnsFromBackend})
-
-        }
-
-    }, [project]);
 
 
     return (
         <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
-            <SideNavigation></SideNavigation>
             <DragDropContext
                 onDragEnd={result => onDragEnd(result, columns, setColumns)}
             >
                 {Object.entries(columns).map(([columnId, column], index) => {
                     return (
-
                         <div
                             style={{
                                 display: "flex",
@@ -168,7 +144,6 @@ function StoriesDnD() {
                                                                         }}
                                                                     >
                                                                         {item.content}
-                                                                        {/* <Story project={1} story=story /> */}
                                                                     </div>
                                                                 );
                                                             }}
@@ -189,4 +164,4 @@ function StoriesDnD() {
     );
 }
 
-export default StoriesDnD;
+export default StoriesTest;
