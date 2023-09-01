@@ -53,7 +53,9 @@
 .currentHeader {
     display: flex;
     justify-content: space-between;
-    background-color: #ed7d1a
+    background-color: #ed7d1a;
+    border-radius: 400px;
+
 
 
 
@@ -71,7 +73,7 @@ button {
     flex-direction: column;
     width: 35%;
     background-color: grey;
-    border-radius: .5em
+    border-top: 400px;
 }
 
 .backlog {

@@ -59,7 +59,7 @@ def update_story(id):
 
     form['csrf_token'].data = request.cookies['csrf_token']
     story_to_update = Story.query.get(id)
-
+    print(form.data["project_id"])
     if form.validate_on_submit():
         story_to_update = Story.query.get(id)
         story_to_update.name = form.data["name"]

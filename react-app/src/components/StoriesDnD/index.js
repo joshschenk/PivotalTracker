@@ -79,33 +79,47 @@ function StoriesDnD() {
         if (project.id) {
 
             dispatch(getStoriesThunk(project.id))
-            let namesList = []
 
-            namesList = stories.map(s => ({ id: `${s.id}`, content: s.name }))
-            console.log(namesList)
-            columnsFromBackend = {
-                [uuidv4()]: {
-                    name: "Current",
-                    items: namesList
-                },
-                [uuidv4()]: {
-                    name: "Backlog",
-                    items: []
-                },
-                [uuidv4()]: {
-                    name: "Done",
-                    items: []
-                },
-                [uuidv4()]: {
-                    name: "Blocked",
-                    items: []
-                }
-            };
-            setColumns({...columnsFromBackend})
 
         }
 
     }, [project]);
+
+    useEffect(() => {
+        let current = []
+        let backlog = []
+        let done = []
+
+        current = stories.filter(s => s.status === "CURRENT").map(s =>
+
+                            ({ id: `${s.id}`, content: s })
+                        )
+        backlog = stories.filter(s => s.status === "BACKLOG").map(s =>
+
+            ({ id: `${s.id}`, content: s })
+        )
+
+        done = []
+        columnsFromBackend = {
+            [uuidv4()]: {
+                name: "Current",
+                items: current
+            },
+            [uuidv4()]: {
+                name: "Backlog",
+                items: backlog
+            },
+            [uuidv4()]: {
+                name: "Done",
+                items: []
+            },
+            [uuidv4()]: {
+                name: "Blocked",
+                items: []
+            }
+        };
+        setColumns({ ...columnsFromBackend })
+    }, [JSON.stringify(stories)])
 
 
     return (
@@ -138,7 +152,7 @@ function StoriesDnD() {
                                                         ? "lightblue"
                                                         : "lightgrey",
                                                     padding: 4,
-                                                    width: 250,
+                                                    width: 300,
                                                     minHeight: 500
                                                 }}
                                             >
@@ -167,8 +181,8 @@ function StoriesDnD() {
                                                                             ...provided.draggableProps.style
                                                                         }}
                                                                     >
-                                                                        {item.content}
-                                                                        {/* <Story project={1} story=story /> */}
+                                                                        {/* {item.content.name} */}
+                                                                        <Story project={project} story={item.content} />
                                                                     </div>
                                                                 );
                                                             }}

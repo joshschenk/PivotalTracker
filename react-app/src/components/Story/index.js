@@ -11,7 +11,6 @@ import "./index.css"
 
 
 function Story({project, story}) {
-    console.log(story.id)
 
     const [showDetails, setShowDetails] = useState(false)
 
@@ -20,7 +19,6 @@ function Story({project, story}) {
 
         setShowDetails(() => !showDetails)
 
-        console.log(showDetails)
         let details = document.getElementById(e.currentTarget.dataset.id);
 
         if (details.className === "detailsHidden") {
