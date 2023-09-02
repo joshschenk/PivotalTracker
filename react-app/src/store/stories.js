@@ -7,7 +7,6 @@ const ADD_STORY_COMMENT = "comments/ADD_STORY_COMMENT"
 const GET_STORY = "stories/GET_STORY"
 
 
-
 const getStory = (story) => ({
     type: GET_STORY,
     story
@@ -109,6 +108,31 @@ export const updateStoryThunk = (story, storyId) => async dispatch => {
 } else {
     return ["An error occurred. Please try again."];
 }
+
+};
+
+export const updateStatusThunk = (status, storyId) => async dispatch => {
+    console.log("status object from thunk", status)
+    const response = await fetch(`/api/stories/status/${storyId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(status)
+    });
+
+    if (response.ok) {
+        const res = await response.json();
+        dispatch(updateStory(res))
+    }
+    else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
+    }
 
 };
 

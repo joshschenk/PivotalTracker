@@ -6,19 +6,19 @@ from sqlalchemy.sql import text
 def seed_stories():
 
     projects = Story(
-        name ='Implement Projects', description='The user should be able to create projects', difficulty= 1, project_id=1,status='CURRENT')
+        name ='Implement Projects', description='The user should be able to create projects', difficulty= 1, project_id=1,status='CURRENT', status_index= 0)
 
     stories = Story(
-        name ='Implement Stories', description='The user should be able to create stories', difficulty= 1, project_id=1,status='CURRENT')
+        name ='Implement Stories', description='The user should be able to create stories', difficulty= 1, project_id=1,status='CURRENT', status_index= 1)
     dnd = Story(
-        name ='Implement DnD', description='The user should be able to move story between statuses', difficulty= 5, project_id=1,status='CURRENT')
+        name ='Implement DnD', description='The user should be able to move story between statuses', difficulty= 5, project_id=1,status='CURRENT', status_index= 2)
     comments = Story(
-        name ='Implement Comments', description='The user should be able to create comments', difficulty= 1, project_id=1,status='BACKLOG')
+        name ='Implement Comments', description='The user should be able to create comments', difficulty= 1, project_id=1,status='BACKLOG', status_index= 0)
     chat = Story(
-        name ='Implement Chat', description='The user should be able to chat in real time', difficulty= 1, project_id=1,status='BACKLOG')
+        name ='Implement Chat', description='The user should be able to chat in real time', difficulty= 1, project_id=1,status='BACKLOG', status_index= 1)
 
     createSpot = Story(
-        name ='Create Spots', description='The user should be able to create spots', difficulty= 3, project_id=2,status='BACKLOG')
+        name ='Create Spots', description='The user should be able to create spots', difficulty= 3, project_id=2,status='BACKLOG', status_index= 0)
 
 
     db.session.add(projects)

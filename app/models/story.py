@@ -14,6 +14,7 @@ class Story(db.Model):
     project_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("projects.id")))
     comments = db.relationship("Comment", back_populates="story", cascade="all, delete-orphan")
     status = db.Column(db.String(50), nullable=False)
+    status_index = db.Column(db.Integer, nullable=False)
 
     project = db.relationship("Project",  back_populates="stories")
 
@@ -25,6 +26,7 @@ class Story(db.Model):
             'difficulty': self.difficulty,
             'project_id': self.project_id,
             'status': self.status,
+            'status_index': self.status_index,
             'comments': [comment.to_dict() for comment in self.comments]
         }
 
@@ -36,5 +38,6 @@ class Story(db.Model):
             'difficulty': self.difficulty,
             'project_id': self.project_id,
             'status': self.status,
+            'status_index': self.status_index,
             'project': self.project.to_dict()
         }

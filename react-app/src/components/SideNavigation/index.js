@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import OpenModalButton from '../OpenModalButton';
 import NewProject from '../NewProject';
+import NewStory from "../NewStory";
+
 import DeleteProject from '../DeleteProject/DeleteProject';
 import { getProjectThunk, getProjectsThunk } from '../../store/projects';
 import './index.css';
@@ -58,6 +60,9 @@ function SideNavigation() {
             </select>
             {projectId &&<OpenModalButton modalComponent={<DeleteProject setProjectId={setProjectId} projectId={projectId} className="DeleteModal" />} buttonText="Delete Project" />}
             <OpenModalButton update={false} isDiv={false} modalComponent={<NewProject setProjectId={setProjectId} className="projectModal"/>} buttonText="New Project"/>
+            {project.id && <OpenModalButton buttonText="Edit Project" modalComponent={<NewProject update={true} ></NewProject>}></OpenModalButton>}
+
+            {project.id && <OpenModalButton buttonText="Add Story" modalComponent={<NewStory update={false} projectId={project.id}></NewStory>}></OpenModalButton>}
             {/* <div className='myWork'>
                 My Work
             </div>

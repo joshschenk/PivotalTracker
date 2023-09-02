@@ -3,53 +3,21 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from 'uuid';
 import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getStoriesThunk } from "../../store/stories";
+import { getStoriesThunk, updateStatusThunk } from "../../store/stories";
 import SideNavigation from "../SideNavigation";
 import Story from "../Story"
 
 
 
-const onDragEnd = (result, columns, setColumns) => {
-    if (!result.destination) return;
-    const { source, destination } = result;
 
-    if (source.droppableId !== destination.droppableId) {
-        const sourceColumn = columns[source.droppableId];
-        const destColumn = columns[destination.droppableId];
-        const sourceItems = [...sourceColumn.items];
-        const destItems = [...destColumn.items];
-        const [removed] = sourceItems.splice(source.index, 1);
-        destItems.splice(destination.index, 0, removed);
-        setColumns({
-            ...columns,
-            [source.droppableId]: {
-                ...sourceColumn,
-                items: sourceItems
-            },
-            [destination.droppableId]: {
-                ...destColumn,
-                items: destItems
-            }
-        });
-    } else {
-        const column = columns[source.droppableId];
-        const copiedItems = [...column.items];
-        const [removed] = copiedItems.splice(source.index, 1);
-        copiedItems.splice(destination.index, 0, removed);
-        setColumns({
-            ...columns,
-            [source.droppableId]: {
-                ...column,
-                items: copiedItems
-            }
-        });
-    }
-};
+
 
 
 
 
 function StoriesDnD() {
+
+
 
     const dispatch = useDispatch()
 
@@ -99,28 +67,91 @@ function StoriesDnD() {
             ({ id: `${s.id}`, content: s })
         )
 
-        done = []
+        done = stories.filter(s => s.status === "DONE").map(s =>
+
+            ({ id: `${s.id}`, content: s })
+        )
+
+        const sortByIndex = (a, b) => {
+            return a.index - b.index
+        }
+
+        current.sort(sortByIndex)
+        backlog.sort(sortByIndex)
+        done.sort(sortByIndex)
         columnsFromBackend = {
-            [uuidv4()]: {
+            '1': {
                 name: "Current",
                 items: current
             },
-            [uuidv4()]: {
+            '2': {
                 name: "Backlog",
                 items: backlog
             },
-            [uuidv4()]: {
+            '3': {
                 name: "Done",
-                items: []
-            },
-            [uuidv4()]: {
-                name: "Blocked",
-                items: []
+                items: done
             }
         };
         setColumns({ ...columnsFromBackend })
     }, [JSON.stringify(stories)])
 
+
+
+    const onDragEnd = (result, columns, setColumns) => {
+        if (!result.destination) return;
+        const { source, destination, draggableId } = result;
+        console.log("destination ",destination)
+
+        if (destination.droppableId === '1') {
+            dispatch(updateStatusThunk({ status_index: parseInt(destination.index + 1), status: "CURRENT" }, draggableId))
+
+        }
+        else if (destination.droppableId === '2')
+            dispatch(updateStatusThunk({ status_index: parseInt(destination.index + 1), status: "BACKLOG" }, draggableId))
+        else if (destination.droppableId === '3')
+            dispatch(updateStatusThunk({ status_index: parseInt(destination.index + 1), status: "DONE" }, draggableId))
+
+        console.log("post action ", destination)
+        if (source.droppableId !== destination.droppableId) {
+
+            console.log("droppableId ", destination.droppableId, source.droppableId)
+
+            const sourceColumn = columns[source.droppableId];
+            const destColumn = columns[destination.droppableId];
+            const sourceItems = [...sourceColumn.items];
+            const destItems = [...destColumn.items];
+            const [removed] = sourceItems.splice(source.index, 1);
+            destItems.splice(destination.index, 0, removed);
+
+
+            setColumns({
+                ...columns,
+                [source.droppableId]: {
+                    ...sourceColumn,
+                    items: sourceItems
+                },
+                [destination.droppableId]: {
+                    ...destColumn,
+                    items: destItems
+                }
+            });
+        } else {
+            const column = columns[source.droppableId];
+            const copiedItems = [...column.items];
+            const [removed] = copiedItems.splice(source.index, 1);
+            copiedItems.splice(destination.index, 0, removed);
+
+
+            setColumns({
+                ...columns,
+                [source.droppableId]: {
+                    ...column,
+                    items: copiedItems
+                }
+            });
+        }
+    };
 
     return (
         <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>

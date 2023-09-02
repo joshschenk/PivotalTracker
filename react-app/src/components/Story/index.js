@@ -6,6 +6,8 @@ import NewComment from "../NewComment";
 
 import OpenModalButton from "../OpenModalButton";
 import { getStoryThunk } from "../../store/stories";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { v4 as uuidv4 } from 'uuid';
 import "./index.css"
 
 

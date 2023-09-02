@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Story, db, Project, Comment
-from app.forms import StoryForm
+from app.forms import StoryForm, StatusForm
 
 story_routes = Blueprint('stories', __name__)
 
@@ -66,6 +66,24 @@ def update_story(id):
         story_to_update.difficulty = form.data["difficulty"]
         story_to_update.description = form.data["description"]
         story_to_update.project_id = form.data["project_id"]
+
+        db.session.commit()
+        return story_to_update.to_dict()
+    return {"errors":form.errors}, 401
+
+@story_routes.route("/status/<int:id>", methods=["PUT"])
+def update_status(id):
+
+    form = StatusForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print("FORM DATA", form.data)
+    print("Index ", form.data["status_index"])
+    print("STATUS ", form.data["status"])
+    story_to_update = Story.query.get(id)
+    print(story_to_update.name)
+    if form.validate_on_submit():
+        story_to_update.status = form.data["status"]
+        story_to_update.status_index = form.data["status_index"]
 
         db.session.commit()
         return story_to_update.to_dict()

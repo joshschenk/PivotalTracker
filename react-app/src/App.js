@@ -35,11 +35,12 @@ function App() {
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/projects">
+          {/* <Route exact path="/projects">
             <Navigation isLoaded={isLoaded} />
             <Stories/>
-          </Route>
-          <Route exact path="/stories">
+          </Route> */}
+          <Route exact path="/projects">
+            <Navigation isLoaded={isLoaded} />
             <StoriesDnD/>
           </Route>
           <Route exact path="/StoriesTest">
