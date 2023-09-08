@@ -6,13 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getStoriesThunk, updateStatusThunk } from "../../store/stories";
 import SideNavigation from "../SideNavigation";
 import Story from "../Story"
-
-
-
-
-
-
-
+import "./index.css"
 
 
 function StoriesDnD() {
@@ -51,6 +45,19 @@ function StoriesDnD() {
 
         }
 
+        // console.log(columns)
+        // // if (columns)
+        // // for (let c of columns)
+        // //     for (let i of c.items) {
+        // //         console.log(i.name)
+        // // }
+
+        // for (let c of Object.values(columns))
+        //     for (let i = 0; i < c.items.length; i++)
+        //     {
+        //         console.log(c, i, c.items[i])
+        //         dispatch(updateStatusThunk({status_index: i, status: c.name.toUpperCase()}, c.items[i].id))
+        //     }
     }, [project]);
 
     useEffect(() => {
@@ -64,7 +71,7 @@ function StoriesDnD() {
                         )
         backlog = stories.filter(s => s.status === "BACKLOG").map(s =>
 
-            ({ id: `${s.id}`, content: s })
+            ({ id: `${s.id}`, content: s    })
         )
 
         done = stories.filter(s => s.status === "DONE").map(s =>
@@ -73,7 +80,7 @@ function StoriesDnD() {
         )
 
         const sortByIndex = (a, b) => {
-            return a.index - b.index
+            return a.content.status_index - b.content.status_index
         }
 
         current.sort(sortByIndex)
@@ -101,21 +108,22 @@ function StoriesDnD() {
     const onDragEnd = (result, columns, setColumns) => {
         if (!result.destination) return;
         const { source, destination, draggableId } = result;
-        console.log("destination ",destination)
 
-        if (destination.droppableId === '1') {
-            dispatch(updateStatusThunk({ status_index: parseInt(destination.index + 1), status: "CURRENT" }, draggableId))
+        if (!(source.droppableId === destination.droppableId && destination.index === source.index))
+        {
+            if (destination.droppableId === '1') {
+                dispatch(updateStatusThunk({ status_index: parseInt(destination.index), status: "CURRENT", source: parseInt(source.droppableId), source_index: source.index }, draggableId))
 
+            }
+            else if (destination.droppableId === '2')
+                dispatch(updateStatusThunk({ status_index: parseInt(destination.index), status: "BACKLOG", source: parseInt(source.droppableId), source_index: source.index }, draggableId))
+            else if (destination.droppableId === '3')
+                dispatch(updateStatusThunk({ status_index: parseInt(destination.index), status: "DONE", source: parseInt(source.droppableId), source_index: source.index }, draggableId))
         }
-        else if (destination.droppableId === '2')
-            dispatch(updateStatusThunk({ status_index: parseInt(destination.index + 1), status: "BACKLOG" }, draggableId))
-        else if (destination.droppableId === '3')
-            dispatch(updateStatusThunk({ status_index: parseInt(destination.index + 1), status: "DONE" }, draggableId))
-
-        console.log("post action ", destination)
+        // console.log("post action ", destination)
         if (source.droppableId !== destination.droppableId) {
 
-            console.log("droppableId ", destination.droppableId, source.droppableId)
+            // console.log("droppableId ", destination.droppableId, source.droppableId)
 
             const sourceColumn = columns[source.droppableId];
             const destColumn = columns[destination.droppableId];
@@ -136,7 +144,7 @@ function StoriesDnD() {
                     items: destItems
                 }
             });
-        } else {
+        } else if (source.droppableId === destination.droppableId && destination.index !== source.index) {
             const column = columns[source.droppableId];
             const copiedItems = [...column.items];
             const [removed] = copiedItems.splice(source.index, 1);
@@ -154,7 +162,8 @@ function StoriesDnD() {
     };
 
     return (
-        <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+        // <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+        <div className="storiesContainer">
             <SideNavigation></SideNavigation>
             <DragDropContext
                 onDragEnd={result => onDragEnd(result, columns, setColumns)}
@@ -162,30 +171,33 @@ function StoriesDnD() {
                 {Object.entries(columns).map(([columnId, column], index) => {
                     return (
 
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center"
-                            }}
+                        <div className={`statusContainer ${column.name}Container`}
+                            // style={{
+                            //     display: "flex",
+                            //     flexDirection: "column",
+                            //     alignItems: "center"
+                            // }}
                             key={columnId}
                         >
-                            <h2>{column.name}</h2>
-                            <div style={{ margin: 8 }}>
+                            <div className="statusHeader">
+                                <h2>{column.name}</h2>
+                            </div>
+                            {/* <div style={{ margin: 8 }}> */}
+                            <div >
                                 <Droppable droppableId={columnId} key={columnId}>
                                     {(provided, snapshot) => {
                                         return (
                                             <div
                                                 {...provided.droppableProps}
                                                 ref={provided.innerRef}
-                                                style={{
-                                                    background: snapshot.isDraggingOver
-                                                        ? "lightblue"
-                                                        : "lightgrey",
-                                                    padding: 4,
-                                                    width: 300,
-                                                    minHeight: 500
-                                                }}
+                                                // style={{
+                                                //     background: snapshot.isDraggingOver
+                                                //         ? "lightblue"
+                                                //         : "lightgrey",
+                                                //     padding: 4,
+                                                //     width: 300,
+                                                //     minHeight: 500
+                                                // }}
                                             >
                                                 {column.items.map((item, index) => {
                                                     return (
@@ -200,17 +212,17 @@ function StoriesDnD() {
                                                                         ref={provided.innerRef}
                                                                         {...provided.draggableProps}
                                                                         {...provided.dragHandleProps}
-                                                                        style={{
-                                                                            userSelect: "none",
-                                                                            padding: 16,
-                                                                            margin: "0 0 8px 0",
-                                                                            minHeight: "50px",
-                                                                            backgroundColor: snapshot.isDragging
-                                                                                ? "#263B4A"
-                                                                                : "#456C86",
-                                                                            color: "white",
-                                                                            ...provided.draggableProps.style
-                                                                        }}
+                                                                        // style={{
+                                                                        //     userSelect: "none",
+                                                                        //     padding: 16,
+                                                                        //     margin: "0 0 8px 0",
+                                                                        //     minHeight: "50px",
+                                                                        //     backgroundColor: snapshot.isDragging
+                                                                        //         ? "#263B4A"
+                                                                        //         : "#456C86",
+                                                                        //     color: "white",
+                                                                        //     ...provided.draggableProps.style
+                                                                        // }}
                                                                     >
                                                                         {/* {item.content.name} */}
                                                                         <Story project={project} story={item.content} />

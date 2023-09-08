@@ -30,7 +30,6 @@ export default function NewProject({update, setProjectId}) {
         }
         else {
             const data = await dispatch(addProjectThunk(name, description))
-            console.log(data)
             if (!data.id) {
                 setErrors(data);
             }

@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Story, db, Project, Comment
 from app.forms import StoryForm, StatusForm
+from sqlalchemy import and_
 
 story_routes = Blueprint('stories', __name__)
 
@@ -76,15 +77,43 @@ def update_status(id):
 
     form = StatusForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("FORM DATA", form.data)
-    print("Index ", form.data["status_index"])
-    print("STATUS ", form.data["status"])
+    print(form.data)
     story_to_update = Story.query.get(id)
-    print(story_to_update.name)
     if form.validate_on_submit():
         story_to_update.status = form.data["status"]
         story_to_update.status_index = form.data["status_index"]
 
         db.session.commit()
+
+        stories = Story.query.filter(and_(Story.project_id == story_to_update.project_id, Story.id != id, Story.status_index >= story_to_update.status_index, Story.status == story_to_update.status)).all()
+        print("***************")
+        for s in stories:
+            s.status_index = s.status_index + 1
+            print(s.name, s.status_index)
+
+            source = ""
+            if form.data["source"] == 1:
+                source = "CURRENT"
+            elif form.data["source"] == 2:
+                source = "BACKLOG"
+            elif form.data["source"] == 3:
+                source = "DONE"
+
+            print("__________________")
+
+            if source != form.data["status"]:
+                old_stories = Story.query.filter(and_(Story.project_id == story_to_update.project_id, Story.status_index >= form.data["source_index"], Story.status == source)).all()
+                for s in old_stories:
+                    s.status_index = s.status_index - 1
+                    print(s.name, s.status_index)
+
+            db.session.commit()
+
+        allstories = Story.query.all()
+        print("________________")
+        for s in allstories:
+            print(s.name, s.status, s.status_index)
+
         return story_to_update.to_dict()
+    print(form.errors)
     return {"errors":form.errors}, 401

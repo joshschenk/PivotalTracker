@@ -12,8 +12,7 @@ const getStoryComments = (comments) => ({
 })
 
 export const addStoryCommentThunk = (comment) => async (dispatch) => {
-    console.log("GETS TO COMMENT THUNK")
-    console.log(comment)
+
 
     const response = await fetch("/api/comments/story", {
         method: "POST",

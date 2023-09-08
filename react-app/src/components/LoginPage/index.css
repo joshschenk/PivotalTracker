@@ -54,14 +54,21 @@
     flex-direction: column;
 }
 
-.text {
+/* .text {
     font-weight: 900;
-}
+} */
 
 .text2 {
     margin-top: 5em;
+    font-size: 1.3em;
     text-align: center;
 }
+
+.text3 {
+    margin-top: 5em;
+    text-align: left;
+}
+
 
 .logo {
     width: 15em;
@@ -122,4 +129,11 @@
 .demo {
     width: 93%;
     background-color: #ed7d1a;
+}
+
+.lione {
+display: flex;
+flex-direction: row;
+margin-top: 3em;
+gap: 3em;
 }

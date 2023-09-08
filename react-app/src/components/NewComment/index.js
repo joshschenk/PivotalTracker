@@ -33,7 +33,6 @@ export default function NewComment({ comment, story, isStory, update }) {
             else {
                 const data = await dispatch(addStoryCommentThunk(storyComment))
                 if (data) {
-                    console.log(data)
 
                     setErrors(data);
                 }

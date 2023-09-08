@@ -5,5 +5,11 @@
     color: white;
     gap: 2em;
     width: 8em;
-    height: 100vh
+    height: 100vh;
+    cursor: pointer;
+
+}
+
+.projectModal {
+    cursor: pointer;
 }

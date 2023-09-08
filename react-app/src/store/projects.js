@@ -45,7 +45,6 @@ export const updateProjectThunk = (name, description, projectId) => async dispat
     }
     else if (response.status < 500) {
         const data = await response.json();
-        console.log("JEKJREKR", data)
         if (data.errors) {
             return data.errors;
         }

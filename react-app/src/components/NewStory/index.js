@@ -41,7 +41,7 @@ export default function NewStory({ story, projectId, update }) {
         else {
             const data = await dispatch(addStoryThunk(story))
             if (data) {
-                console.log(data)
+                // console.log(data)
 
                 setErrors(data);
             }

@@ -31,7 +31,7 @@ function SideNavigation() {
             dispatch(getProjectThunk(projectId))
         }
 
-        console.log(project)
+        // console.log(project)
 
     }, [dispatch, projectId])
 
@@ -58,11 +58,13 @@ function SideNavigation() {
                 }
 
             </select>
-            {projectId &&<OpenModalButton modalComponent={<DeleteProject setProjectId={setProjectId} projectId={projectId} className="DeleteModal" />} buttonText="Delete Project" />}
-            <OpenModalButton update={false} isDiv={false} modalComponent={<NewProject setProjectId={setProjectId} className="projectModal"/>} buttonText="New Project"/>
-            {project.id && <OpenModalButton buttonText="Edit Project" modalComponent={<NewProject update={true} ></NewProject>}></OpenModalButton>}
+            <OpenModalButton update={false} isDiv={true} modalComponent={<NewProject setProjectId={setProjectId} className="projectModal" />} buttonText="New Project" />
+            {project.id && <OpenModalButton isDiv={true} buttonText="Edit Project" className="projectModal" modalComponent={<NewProject update={true} ></NewProject>}></OpenModalButton>}
 
-            {project.id && <OpenModalButton buttonText="Add Story" modalComponent={<NewStory update={false} projectId={project.id}></NewStory>}></OpenModalButton>}
+            {projectId && <OpenModalButton isDiv={true} className="projectModal" modalComponent={<DeleteProject setProjectId={setProjectId} projectId={projectId} className="DeleteModal" />} buttonText="Delete Project" />}
+
+            {project.id && <OpenModalButton isDiv={true} className="projectModal" buttonText="Add Story" modalComponent={<NewStory update={false} projectId={project.id}></NewStory>}></OpenModalButton>}
+
             {/* <div className='myWork'>
                 My Work
             </div>

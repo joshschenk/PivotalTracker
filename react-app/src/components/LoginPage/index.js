@@ -7,6 +7,10 @@ import logo from "../../assets/logo.png"
 // import background from "../..assets/background.png"
 import "./index.css"
 import Footer from "../Footer";
+import { ReactComponent as Lione } from "../../assets/loginimage1.svg"
+import { ReactComponent as Litwo } from "../../assets/loginimage2.svg"
+import { ReactComponent as Lithree } from "../../assets/loginimage3.svg"
+
 
 const LoginPage = () => {
 
@@ -20,7 +24,6 @@ const LoginPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const data = await dispatch(login(email, password));
-        console.log(data)
         if (data)
         {
             setErrors(data);
@@ -99,6 +102,40 @@ const LoginPage = () => {
                     <h2>Proven project management for successful teams</h2>
                     <p>
                         With a shared view of team priorities, a process that fosters collaboration, and dynamic tools to analyze progress, your team will deliver more frequently and consistently.
+                    </p>
+                </div>
+                <div className="lione">
+                    <div className="formText text3">
+                        <h2>Better organization to get focused</h2>
+                        <p>
+                            Keep your team on the rails. Tracker's shared backlog makes priorities clear so the team can stay organized. Easily visualize scope, focus your teamwork, and stay nimble when circumstances change.
+                        </p>
+                    </div>
+                    <Lione/>
+                </div>
+                <div className="lione">
+                    <Litwo />
+                    <div className="formText text4">
+                        <h2>Better organization to get focused</h2>
+                        <p>
+                            Keep your team on the rails. Tracker's shared backlog makes priorities clear so the team can stay organized. Easily visualize scope, focus your teamwork, and stay nimble when circumstances change.
+                        </p>
+                    </div>
+
+                </div>
+                <div className="lione">
+                    <div className="formText text5">
+                        <h2>Better organization to get focused</h2>
+                        <p>
+                            Keep your team on the rails. Tracker's shared backlog makes priorities clear so the team can stay organized. Easily visualize scope, focus your teamwork, and stay nimble when circumstances change.
+                        </p>
+                    </div>
+                    <Lithree />
+                </div>
+                <div className="formText text2">
+                    <h2>A better way to develop</h2>
+                    <p>
+                        Succeeding in an evolving tech landscape requires a time-tested process and a tool your team can rely on. Tracker's modern workflow helps your team keep the pace and adapt when needs change.
                     </p>
                 </div>
             </div>

@@ -1,0 +1,38 @@
+.statusHeader {
+    display: flex;
+    justify-content: center;
+    background-color: #2F3337;
+    border-top-left-radius: 12px;  /* Top-left rounded corner for the header */
+  border-top-right-radius: 12px;
+
+
+}
+
+.statusContainer {
+    border-radius: 12px;
+}
+.CurrentContainer {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    background-color: grey;
+    margin-top: 1em;
+}
+
+.BacklogContainer {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    background-color: grey;
+    margin-top: 1em;
+}
+
+.DoneContainer {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    background-color: grey;
+    margin-top: 1em;
+    margin-right: 3em
+
+}

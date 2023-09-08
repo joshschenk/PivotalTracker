@@ -32,8 +32,6 @@ const columnsFromBackend = {
         items: []
     }
 };
-console.log("items", itemsFromBackend)
-console.log("columns", columnsFromBackend)
 const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
     const { source, destination } = result;
@@ -80,9 +78,6 @@ function StoriesTest() {
     //     console.log(column)
 
     // })
-    console.log([uuidv4()])
-    console.log(uuidv4())
-    console.log(columns)
 
 
 

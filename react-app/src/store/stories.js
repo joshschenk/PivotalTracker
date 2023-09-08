@@ -34,8 +34,7 @@ export const getStoryThunk = (storyId) => async (dispatch) => {
 }
 
 export const addStoryCommentThunk = (comment) => async (dispatch) => {
-    console.log("GETS TO COMMENT THUNK")
-    console.log(comment)
+
 
     const response = await fetch("/api/comments/story", {
         method: "POST",
@@ -112,7 +111,7 @@ export const updateStoryThunk = (story, storyId) => async dispatch => {
 };
 
 export const updateStatusThunk = (status, storyId) => async dispatch => {
-    console.log("status object from thunk", status)
+    // console.log("status object from thunk", status)
     const response = await fetch(`/api/stories/status/${storyId}`, {
         method: "PUT",
         headers: {
