@@ -58,7 +58,7 @@ function SideNavigation() {
                 }
 
             </select>
-            <OpenModalButton update={false} isDiv={true} modalComponent={<NewProject setProjectId={setProjectId} className="projectModal" />} buttonText="New Project" />
+            <OpenModalButton update={false} isDiv={true} modalComponent={<NewProject setProjectId={setProjectId} project={project} className="projectModal" />} buttonText="New Project" />
             {project.id && <OpenModalButton isDiv={true} buttonText="Edit Project" className="projectModal" modalComponent={<NewProject update={true} ></NewProject>}></OpenModalButton>}
 
             {projectId && <OpenModalButton isDiv={true} className="projectModal" modalComponent={<DeleteProject setProjectId={setProjectId} projectId={projectId} className="DeleteModal" />} buttonText="Delete Project" />}

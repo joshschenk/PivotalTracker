@@ -28,7 +28,7 @@ export default function NewStory({ story, projectId, update, project }) {
         const project_id = projectId
         const status = "BACKLOG"
         let backCount = 0;
-        for (let s of project.stories)
+        for (let s of project?.stories)
         {
             if (s.status === "BACKLOG")
                 backCount++;

@@ -42,7 +42,7 @@ function Story({project, story}) {
             <div className="storyHeader">
                 <div data-id={story.id} data-description={story.description} onClick={handleDetails} className="story" key={story.id}>{story.name}</div>
                 <div className="editDelete">
-                    <OpenModalButton className="updateStoryModal" buttonText="Update" modalComponent={<NewStory story={story} update={true} projectId={project.id}></NewStory>}></OpenModalButton>
+                    <OpenModalButton className="updateStoryModal" buttonText="Update" modalComponent={<NewStory project={project} story={story} update={true} projectId={project.id}></NewStory>}></OpenModalButton>
                     <OpenModalButton className="deleteStoryModal" buttonText="Delete" modalComponent={<DeleteStory storyId={story.id} ></DeleteStory>}></OpenModalButton>
                 </div>
             </div>
