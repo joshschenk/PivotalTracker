@@ -8,3 +8,5 @@ class StoryForm(FlaskForm):
     description = StringField('description', validators=[DataRequired()])
     difficulty = StringField('difficulty', validators=[DataRequired()])
     project_id = IntegerField('project_id', validators=[DataRequired()])
+    status = StringField('status', validators=[DataRequired()])
+    status_index = IntegerField('status_index')

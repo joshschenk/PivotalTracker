@@ -4,7 +4,7 @@ import { useModal } from "../../context/Modal";
 import { addStoryThunk, updateStoryThunk } from "../../store/stories";
 import "./index.css"
 
-export default function NewStory({ story, projectId, update }) {
+export default function NewStory({ story, projectId, update, project }) {
     const dispatch = useDispatch();
     const storyId = story?.id
 
@@ -26,8 +26,16 @@ export default function NewStory({ story, projectId, update }) {
 
         e.preventDefault()
         const project_id = projectId
+        const status = "BACKLOG"
+        let backCount = 0;
+        for (let s of project.stories)
+        {
+            if (s.status === "BACKLOG")
+                backCount++;
+        }
+        const status_index = backCount;
 
-        const story = {name, description, project_id, difficulty}
+        const story = {name, description, project_id, difficulty, status, status_index}
 
         if (update) {
             const data = await dispatch(updateStoryThunk(story, storyId))
