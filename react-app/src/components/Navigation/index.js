@@ -14,10 +14,10 @@ function Navigation({ isLoaded }){
 	return (
 		<div className="navContainer">
 
-			<Link to="/">
+			{/* <Link to="/"> */}
 
 				<img className="tracker" src={tracker} alt="tracker" />
-			</Link>
+			{/* </Link> */}
 
 			{isLoaded && (
 
