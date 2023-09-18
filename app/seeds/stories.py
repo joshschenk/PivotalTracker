@@ -18,8 +18,36 @@ def seed_stories():
         name ='Implement Chat', description='The user should be able to chat in real time', difficulty= 1, project_id=1,status='BACKLOG', status_index= 1)
 
     createSpot = Story(
-        name ='Create Spots', description='The user should be able to create spots', difficulty= 3, project_id=2,status='BACKLOG', status_index= 0)
+        name ='Create Spots', description='The user should be able to create spots', difficulty= 3, project_id=4,status='DONE', status_index= 0)
+    createReviews = Story(
+        name ='Create Reviews', description='The user should be able to create reviews', difficulty= 3, project_id=4,status='DONE', status_index= 1)
+    aws = Story(
+        name ='AWS hosting', description='Images should be hosted on AWS', difficulty= 3, project_id=4,status='BACKLOG', status_index= 0)
 
+    createBookings = Story(
+        name ='Create Bookings', description='The user should be able to create bookings', difficulty= 3, project_id=4,status='CURRENT', status_index= 0)
+
+    search = Story(
+        name ='Search', description='The user should be able to search for bookings', difficulty= 3, project_id=4,status='CURRENT', status_index= 0)
+
+
+    transaction = Story(
+        name ='Make Transaction', description='The user should be able to make a stock trnsaction', difficulty= 3, project_id=3,status='BACKLOG', status_index= 0)
+
+    addBalance = Story(
+        name ='Add Balance', description='The user should be able to add to their account balance', difficulty= 3, project_id=4,status='CURRENT', status_index= 1)
+
+    charts = Story(
+        name ='Charts', description='The user should be able to view financial charts', difficulty= 3, project_id=3,status='CURRENT', status_index= 2)
+
+    searchStocks = Story(
+        name ='Search Stocks', description='The user should be able to search for a given stock', difficulty= 3, project_id=3,status='DONE', status_index= 1)
+
+    portfolio = Story(
+        name ='Portfolio', description='The user should be able to view their portfolio', difficulty= 3, project_id=3,status='DONE', status_index= 0)
+
+    wishlist = Story(
+        name ='Create wishlist', description='The user should be able to create a wishlist', difficulty= 3, project_id=3,status='CURRENT', status_index= 0)
 
     db.session.add(projects)
     db.session.add(stories)
@@ -27,6 +55,16 @@ def seed_stories():
     db.session.add(chat)
     db.session.add(comments)
     db.session.add(createSpot)
+    db.session.add(createBookings)
+    db.session.add(createReviews)
+    db.session.add(aws)
+    db.session.add(search)
+    db.session.add(wishlist)
+    db.session.add(portfolio)
+    db.session.add(searchStocks)
+    db.session.add(charts)
+    db.session.add(addBalance)
+    db.session.add(transaction)
 
     db.session.commit()
 

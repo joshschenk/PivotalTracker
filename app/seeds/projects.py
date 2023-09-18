@@ -11,8 +11,17 @@ def seed_projects(users):
         name ='Group', description='Group Project', user_id = 3, users= [users[0], users[2]])
 
 
+    webear = Project(
+        name ='Webear', description='Financial trading site', user_id = 1, users= [users[0], users[1]])
+
+
+    airbnb  = Project(
+        name ='Airbnb', description='Airbnb Clone', user_id = 1, users= [users[0], users[1]])
+
     db.session.add(capstone)
     db.session.add(group)
+    db.session.add(webear)
+    db.session.add(airbnb)
     db.session.commit()
 
 

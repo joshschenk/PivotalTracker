@@ -187,9 +187,14 @@ function StoriesDnD() {
                                 <Droppable droppableId={columnId} key={columnId}>
                                     {(provided, snapshot) => {
                                         return (
-                                            <div
+                                            <div className="testtest"
                                                 {...provided.droppableProps}
                                                 ref={provided.innerRef}
+                                                style={{
+                                                    backgroundColor: snapshot.isDraggingOver ? 'light grey' : 'grey',
+                                                    minHeight:500
+                                                 }}
+
                                                 // style={{
                                                 //     background: snapshot.isDraggingOver
                                                 //         ? "lightblue"
