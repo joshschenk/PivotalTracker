@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
@@ -12,11 +13,13 @@ import StoriesDnD from "./components/StoriesDnD";
 import StoriesTest from "./components/StoriesTest"
 
 function App() {
+  const sessionUser = useSelector((state) => state.session.user);
+
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
-  }, [dispatch]);
+  }, []);
   console.log(isLoaded)
 
   return (
@@ -27,26 +30,29 @@ function App() {
 
       {isLoaded && (
         <Switch>
-          <Route exact path="/login" >
+          {/* <Route exact path="/login" >
             <LoginFormPage />
           </Route>
-          <Route exact path="/signup" >
-            <SignUpPage />
-          </Route>
-          <Route exact path="/signup">
+          // <Route exact path="/signup" >
+          //   <SignUpPage />
+          // </Route> */}
+          {/* <Route exact path="/signup">
             <SignupFormPage />
-          </Route>
-          <Route exact path="/stories">
+          </Route> */}
+          {/* <Route exact path="/stories">
             <Navigation isLoaded={isLoaded} />
             <Stories/>
+          </Route> */}
+          <Route exact path="/signup" >
+             <SignUpPage />
           </Route>
-          <Route exact path="/projects">
+          {sessionUser && <Route exact path="/projects">
             <Navigation isLoaded={isLoaded} />
             <StoriesDnD />
-          </Route>
-          <Route exact path="/StoriesTest">
+          </Route>}
+          {/* <Route exact path="/StoriesTest">
             <StoriesTest />
-          </Route>
+          </Route> */}
         </Switch>
       )}
     </>
