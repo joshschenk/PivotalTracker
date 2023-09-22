@@ -7,6 +7,12 @@
 
 
 }
+.pageContainer {
+    display: flex;
+    background-color: black;
+    gap: 2em;
+    flex-direction: column;
+}
 
 .statusContainer {
     border-radius: 12px;

@@ -1,18 +1,18 @@
 .footer{
     display: flex;
-    padding:20px;
+    /* padding:20px;
     margin:20px 0;
-    gap:30px;
+    gap:30px; */
     justify-content: center;
     align-items: center;
 }
 .github-links{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     max-width: 800px;
     width: 100%;
     align-items: center;
-    gap:2em;
+    gap:1em;
 }
 .group-link{
     text-decoration: none;
@@ -23,10 +23,10 @@
     margin:0;
     object-fit: scale-down;
     /* border: 2px solid #001b39; */
-    border-radius: 5px;
+    /* border-radius: 5px; */
     background-image:linear-gradient(-270deg,black 0%,#001b39 100%);
-    gap:1em;
-    padding:5px;
+    /* gap:1em;
+    padding:5px; */
 }
 .github-icon{
     height:40px;

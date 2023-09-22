@@ -7,6 +7,7 @@ import { getStoriesThunk, updateStatusThunk } from "../../store/stories";
 import SideNavigation from "../SideNavigation";
 import Story from "../Story"
 import "./index.css"
+import Footer from "../Footer";
 
 
 function StoriesDnD() {
@@ -163,6 +164,7 @@ function StoriesDnD() {
 
     return (
         // <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+        <div className="pageContainer">
         <div className="storiesContainer">
             <SideNavigation></SideNavigation>
             <DragDropContext
@@ -247,6 +249,8 @@ function StoriesDnD() {
                     );
                 })}
             </DragDropContext>
+            </div>
+            <Footer/>
         </div>
     );
 }

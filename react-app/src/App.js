@@ -17,6 +17,7 @@ function App() {
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
+  console.log(isLoaded)
 
   return (
     <>
@@ -41,7 +42,7 @@ function App() {
           </Route>
           <Route exact path="/projects">
             <Navigation isLoaded={isLoaded} />
-            <StoriesDnD/>
+            <StoriesDnD />
           </Route>
           <Route exact path="/StoriesTest">
             <StoriesTest />
