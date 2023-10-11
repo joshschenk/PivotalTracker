@@ -18,11 +18,6 @@ Javascript, Python, HTML, CSS, React, Redux, Flask, SQLAlchemy, BeautifulDND.js,
 
 <a name="feat"></a>
 ## Features
-### Add a project
-
-![image](https://github.com/joshschenk/PivotalTracker/assets/35519689/f413b471-e33b-4686-9fa6-34ff89023bea)
-
-
 ### Add a story
 
 ![image](https://github.com/joshschenk/PivotalTracker/assets/35519689/7f7dae27-50d6-427d-bc10-f406558ef985)
