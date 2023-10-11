@@ -3,6 +3,8 @@
 ## Table of Contents
 * [ About ](#about)
 * [ Technologies ](#tech)
+* [ Features ](#feat)
+* [ Technologies ](#tech)
 
 <a name="about"></a>
 ## About
@@ -13,5 +15,9 @@ Robust project management tool capable of creating stories, managing task priori
 ## Technologies
 
 Javascript, Python, HTML, CSS, React, Redux, Flask, SQLAlchemy, BeautifulDND.js, Validator.js
+
+<a name="feat"></a>
+## Features
+
 
 
