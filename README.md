@@ -17,6 +17,10 @@ Javascript, Python, HTML, CSS, React, Redux, Flask, SQLAlchemy, BeautifulDND.js,
 
 <a name="feat"></a>
 ## Features
+### Add a project
+### Add a story
+### Comment on a story
+### Drag and drop story into new phase of development
 
 
 
