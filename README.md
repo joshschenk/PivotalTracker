@@ -95,6 +95,47 @@ const onDragEnd = (result, columns, setColumns) => {
     };
 ```
 
+### Backend Route for Story's Progress Update
+
+```python
+@story_routes.route("/status/<int:id>", methods=["PUT"])
+def update_status(id):
+
+    form = StatusForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    story_to_update = Story.query.get(id)
+    if form.validate_on_submit():
+        story_to_update.status = form.data["status"]
+        story_to_update.status_index = form.data["status_index"]
+
+        db.session.commit()
+
+        stories = Story.query.filter(and_(Story.project_id == story_to_update.project_id, Story.id != id, Story.status_index >= story_to_update.status_index, Story.status == story_to_update.status)).all()
+        for s in stories:
+            s.status_index = s.status_index + 1
+
+            source = ""
+            if form.data["source"] == 1:
+                source = "CURRENT"
+            elif form.data["source"] == 2:
+                source = "BACKLOG"
+            elif form.data["source"] == 3:
+                source = "DONE"
+
+            if source != form.data["status"]:
+                old_stories = Story.query.filter(and_(Story.project_id == story_to_update.project_id, Story.status_index >= form.data["source_index"], Story.status == source)).all()
+                for s in old_stories:
+                    s.status_index = s.status_index - 1
+
+            db.session.commit()
+
+        allstories = Story.query.all()
+        for s in allstories:
+
+        return story_to_update.to_dict()
+    return {"errors":form.errors}, 401
+```
+
 
 
 
