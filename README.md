@@ -4,7 +4,6 @@
 * [ About ](#about)
 * [ Technologies ](#tech)
 * [ Features ](#feat)
-* [ Technologies ](#tech)
 
 <a name="about"></a>
 ## About
