@@ -12,6 +12,6 @@ Robust project management tool capable of creating stories, managing task priori
 <a name="tech"></a>
 ## Technologies
 
-sometext
+Javascript, Python, HTML, CSS, React, Redux, Flask, SQLAlchemy, BeautifulDND.js, Validator.js
 
 
