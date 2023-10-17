@@ -20,7 +20,6 @@ function App() {
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, []);
-  console.log(isLoaded)
 
   return (
     <>
