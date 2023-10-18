@@ -121,7 +121,7 @@ function StoriesDnD() {
             else if (destination.droppableId === '3')
                 dispatch(updateStatusThunk({ status_index: parseInt(destination.index), status: "DONE", source: parseInt(source.droppableId), source_index: source.index }, draggableId))
         }
-        // console.log("post action ", destination)
+        // console.log("post action  ", destination)
         if (source.droppableId !== destination.droppableId) {
 
             // console.log("droppableId ", destination.droppableId, source.droppableId)
