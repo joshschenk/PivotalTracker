@@ -31,6 +31,7 @@ const getProject = (project) => ({
 
 
 export const updateProjectThunk = (name, description, projectId) => async dispatch => {
+    
     const response = await fetch(`/api/projects/update/${projectId}`, {
         method: "PUT",
         headers: {
