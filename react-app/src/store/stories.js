@@ -17,6 +17,31 @@ const addStoryComment = (comment) => ({
     comment
 })
 
+export const clearStories = () => ({
+    type: CLEAR_STORIES,
+    payload: null
+})
+
+const updateStory = (story) => ({
+    type: UPDATE_STORY,
+    story
+})
+
+const deleteStory = (storyId) => ({
+    type: DELETE_STORY,
+    storyId
+})
+
+const getStories = (stories) => ({
+    type: GET_STORIES,
+    stories
+})
+
+const addStory = (story) => ({
+    type: ADD_STORY,
+    story
+})
+
 
 export const getStoryThunk = (storyId) => async (dispatch) => {
 
@@ -61,30 +86,7 @@ export const addStoryCommentThunk = (comment) => async (dispatch) => {
 
 
 
-export const clearStories = () => ({
-    type: CLEAR_STORIES,
-    payload: null
-})
 
-const updateStory = (story) => ({
-    type: UPDATE_STORY,
-    story
-})
-
-const deleteStory = (storyId) => ({
-    type: DELETE_STORY,
-    storyId
-})
-
-const getStories = (stories) => ({
-    type: GET_STORIES,
-    stories
-})
-
-const addStory = (story) => ({
-    type: ADD_STORY,
-    story
-})
 
 export const updateStoryThunk = (story, storyId) => async dispatch => {
     const response = await fetch(`/api/stories/update/${storyId}`, {
