@@ -19,7 +19,7 @@
     "uuid": "^9.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "nvm use v18 && react-scripts start",
     "build": "npx browserslist@latest --update-db --yes && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
